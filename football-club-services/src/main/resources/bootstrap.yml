@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: football-club-services
+  cloud:
+    config:
+      uri: http://localhost:8888

@@ -1,1 +1,1 @@
-include 'club-services', 'config-server', 'discovery-service', 'football-club-services'
+include 'common-domain', 'common-club', 'config-server', 'discovery-service', 'football-club-services', 'test'

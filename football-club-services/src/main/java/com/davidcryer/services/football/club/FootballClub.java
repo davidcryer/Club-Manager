@@ -4,15 +4,12 @@ import com.davidcryer.services.baseentities.Club;
 import com.davidcryer.services.football.member.FootballPlayer;
 import com.davidcryer.services.football.results.FootballResult;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 public class FootballClub extends Club {
-    @OneToMany(mappedBy = "club", cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "club", cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
     private List<FootballPlayer> players;
     @OneToMany(mappedBy = "club", cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
     private List<FootballResult> results;

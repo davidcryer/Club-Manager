@@ -12,10 +12,10 @@ import java.util.List;
 public class FootballPlayer extends Person {
     @Embedded
     private FootballSkillSet skillSet;
-    @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "teamA", cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
     private List<FootballResult> results;
-    @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
-    private FootballClub club;
+    @ManyToMany(mappedBy = "players", cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    private List<FootballClub> clubs;
 
     public FootballSkillSet getSkillSet() {
         return skillSet;
@@ -34,11 +34,11 @@ public class FootballPlayer extends Person {
     }
 
     @JsonIgnore
-    public FootballClub getClub() {
-        return club;
+    public List<FootballClub> getClubs() {
+        return clubs;
     }
 
-    public void setClub(FootballClub club) {
-        this.club = club;
+    public void setClubs(List<FootballClub> clubs) {
+        this.clubs = clubs;
     }
 }

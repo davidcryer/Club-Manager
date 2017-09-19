@@ -1,4 +1,4 @@
-package com.davidcryer.web.cloudbasedclubmanager;
+package com.davidcryer.config;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

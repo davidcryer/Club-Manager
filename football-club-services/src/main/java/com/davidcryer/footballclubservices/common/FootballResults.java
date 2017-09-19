@@ -1,4 +1,4 @@
-package com.davidcryer.footballclubservices.member;
+package com.davidcryer.footballclubservices.common;
 
 import javax.persistence.Embeddable;
 

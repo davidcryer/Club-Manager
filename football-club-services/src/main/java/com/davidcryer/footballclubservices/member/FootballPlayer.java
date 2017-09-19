@@ -2,6 +2,7 @@ package com.davidcryer.footballclubservices.member;
 
 import com.davidcryer.common.domain.Person;
 import com.davidcryer.footballclubservices.club.FootballClub;
+import com.davidcryer.footballclubservices.common.FootballResults;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.CascadeType;

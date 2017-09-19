@@ -1,4 +1,4 @@
-package com.davidcryer.common.domain.member;
+package com.davidcryer.common.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +13,13 @@ public class Person implements Serializable {
     private long id;
     private String firstName;
     private String lastName;
+
+    public Person() {}
+
+    public Person(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 
     public long getId() {
         return id;

@@ -1,4 +1,4 @@
-package com.davidcryer.services;
+package com.davidcryer.services.baseentities;
 
 import com.davidcryer.services.address.Address;
 

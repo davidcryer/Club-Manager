@@ -1,6 +1,6 @@
 package com.davidcryer.services.football.member;
 
-import com.davidcryer.services.Person;
+import com.davidcryer.services.baseentities.Person;
 import com.davidcryer.services.football.club.FootballClub;
 import com.davidcryer.services.football.results.FootballResult;
 import com.fasterxml.jackson.annotation.JsonIgnore;

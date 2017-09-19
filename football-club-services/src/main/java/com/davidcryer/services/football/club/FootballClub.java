@@ -1,6 +1,6 @@
 package com.davidcryer.services.football.club;
 
-import com.davidcryer.services.Club;
+import com.davidcryer.services.baseentities.Club;
 import com.davidcryer.services.football.member.FootballPlayer;
 import com.davidcryer.services.football.results.FootballResult;
 

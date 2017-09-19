@@ -1,5 +1,8 @@
 package com.davidcryer.footballclubservices.member;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class FootballSkillSet {
     private int speed;
     private int skill;

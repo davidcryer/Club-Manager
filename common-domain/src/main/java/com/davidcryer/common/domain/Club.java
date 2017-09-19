@@ -1,19 +1,17 @@
 package com.davidcryer.common.domain;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Club {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    @NotNull
     private String name;
+    @OneToOne(cascade = CascadeType.REMOVE)
     private Address address;
-
-    public Club() {}
-
-    public Club(String name, Address address) {
-        this.name = name;
-        this.address = address;
-    }
 
     public long getId() {
         return id;

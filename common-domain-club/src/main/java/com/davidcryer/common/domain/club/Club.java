@@ -1,12 +1,11 @@
-package com.davidcryer.common.club;
+package com.davidcryer.common.domain.club;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Club {
     private long id;
     private String name;
-
-    public Club() {
-
-    }
 
     public long getId() {
         return id;
@@ -23,5 +22,4 @@ public class Club {
     public void setName(String name) {
         this.name = name;
     }
-
 }

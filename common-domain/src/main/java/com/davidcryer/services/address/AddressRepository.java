@@ -1,6 +1,5 @@
-package com.davidcryer.footballclubservices.address;
+package com.davidcryer.services.address;
 
-import com.davidcryer.common.domain.Address;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 

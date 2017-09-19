@@ -1,4 +1,4 @@
-package com.davidcryer.footballclubservices.club;
+package com.davidcryer.services.football.club;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;

@@ -1,4 +1,4 @@
-package com.davidcryer.common.domain;
+package com.davidcryer.services.address;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

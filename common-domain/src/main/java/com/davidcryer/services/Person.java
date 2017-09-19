@@ -1,15 +1,18 @@
-package com.davidcryer.common.domain;
+package com.davidcryer.services;
+
+import com.davidcryer.services.address.Address;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Club {
+public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @NotNull
-    private String name;
+    private String firstName;
+    private String lastName;
     @OneToOne(cascade = CascadeType.REMOVE)
     private Address address;
 
@@ -21,12 +24,20 @@ public class Club {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public Address getAddress() {

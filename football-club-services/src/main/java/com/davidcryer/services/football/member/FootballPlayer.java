@@ -1,19 +1,20 @@
-package com.davidcryer.footballclubservices.member;
+package com.davidcryer.services.football.member;
 
-import com.davidcryer.common.domain.Person;
-import com.davidcryer.footballclubservices.club.FootballClub;
-import com.davidcryer.footballclubservices.common.FootballResults;
+import com.davidcryer.services.Person;
+import com.davidcryer.services.football.club.FootballClub;
+import com.davidcryer.services.football.results.FootballResult;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class FootballPlayer extends Person {
     @Embedded
     private FootballSkillSet skillSet;
-    @Embedded
-    private FootballResults results;
-    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    private List<FootballResult> results;
+    @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
     private FootballClub club;
 
     public FootballSkillSet getSkillSet() {
@@ -24,11 +25,11 @@ public class FootballPlayer extends Person {
         this.skillSet = skillSet;
     }
 
-    public FootballResults getResults() {
+    public List<FootballResult> getResults() {
         return results;
     }
 
-    public void setResults(FootballResults results) {
+    public void setResults(List<FootballResult> results) {
         this.results = results;
     }
 

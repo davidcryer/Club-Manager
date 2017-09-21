@@ -3,20 +3,21 @@ package com.davidcryer.services.football.career;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.Embeddable;
+import javax.validation.constraints.NotNull;
 
 @Embeddable
 public class FootballSkillSet {
-    @Range(min = 0, max = 10)
+    @NotNull @Range(min = 0, max = 10)
     private short speed;
-    @Range(min = 0, max = 10)
+    @NotNull @Range(min = 0, max = 10)
     private short ballControl;
-    @Range(min = 0, max = 10)
+    @NotNull @Range(min = 0, max = 10)
     private short creativity;
-    @Range(min = 0, max = 10)
+    @NotNull @Range(min = 0, max = 10)
     private short holdUp;
-    @Range(min = 0, max = 10)
+    @NotNull @Range(min = 0, max = 10)
     private short shooting;
-    @Range(min = 0, max = 10)
+    @NotNull @Range(min = 0, max = 10)
     private short defense;
 
     public short getSpeed() {

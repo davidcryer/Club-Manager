@@ -14,9 +14,9 @@ public class FootballCareer extends IdEntity {
     private FootballSkillSet skillSet;
     @MapsId
     private Member member;
-    @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<FootballClub> clubs;
-    @OneToMany(mappedBy = "player", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "player", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<FootballCareerResult> results;
 
     public FootballSkillSet getSkillSet() {

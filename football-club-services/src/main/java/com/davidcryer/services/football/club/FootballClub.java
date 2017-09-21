@@ -9,9 +9,9 @@ import java.util.List;
 
 @Entity
 public class FootballClub extends Club {
-    @ManyToMany(mappedBy = "clubs", cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<FootballCareer> players;
-    @OneToMany(mappedBy = "club", cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "club", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<FootballResult> results;
 
     public List<FootballCareer> getPlayers() {

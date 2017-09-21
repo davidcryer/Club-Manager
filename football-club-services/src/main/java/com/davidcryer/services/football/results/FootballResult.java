@@ -10,13 +10,11 @@ import java.util.List;
 
 @Entity
 public class FootballResult extends GeneratedIdEntity {
-    @NotNull
-    @Embedded
+    @NotNull @Embedded
     private TwoTeamSport.Report report;
     @OneToMany(mappedBy = "result", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<FootballCareerResult> players;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @NotNull
+    @NotNull @ManyToOne(fetch = FetchType.LAZY)
     private FootballClub club;
 
     public TwoTeamSport.Report getReport() {

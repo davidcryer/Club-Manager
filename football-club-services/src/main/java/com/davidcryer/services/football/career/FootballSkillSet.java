@@ -9,7 +9,7 @@ public class FootballSkillSet {
     @Range(min = 0, max = 10)
     private short speed;
     @Range(min = 0, max = 10)
-    private short skill;
+    private short ballControl;
     @Range(min = 0, max = 10)
     private short creativity;
     @Range(min = 0, max = 10)
@@ -27,12 +27,12 @@ public class FootballSkillSet {
         this.speed = speed;
     }
 
-    public short getSkill() {
-        return skill;
+    public short getBallControl() {
+        return ballControl;
     }
 
-    public void setSkill(short skill) {
-        this.skill = skill;
+    public void setBallControl(short ballControl) {
+        this.ballControl = ballControl;
     }
 
     public short getCreativity() {

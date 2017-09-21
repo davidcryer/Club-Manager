@@ -6,14 +6,14 @@ import com.davidcryer.services.football.results.FootballCareerResult;
 import com.davidcryer.services.member.Member;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
 public class FootballCareer extends IdEntity {
-    @Embedded
+    @NotNull @Embedded
     private FootballSkillSet skillSet;
-    @MapsId
-    @OneToOne(fetch = FetchType.LAZY)
+    @NotNull @MapsId @OneToOne
     private Member member;
     @ManyToMany(fetch = FetchType.LAZY)
     private List<FootballClub> clubs;

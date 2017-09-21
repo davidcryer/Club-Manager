@@ -1,25 +1,22 @@
-package com.davidcryer.services;
+package com.davidcryer.services.configurationadapters;
 
-import org.springframework.context.annotation.Bean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.data.rest.core.event.ValidatingRepositoryEventListener;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapter;
 import org.springframework.validation.Validator;
-import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 @Configuration
-public class RestValidationConfiguration extends RepositoryRestConfigurerAdapter {
+public class EntityValidationConfigurerAdapter extends RepositoryRestConfigurerAdapter {
+    private final Validator validator;
 
-    @Bean
-    @Primary
-    Validator validator() {
-        return new LocalValidatorFactoryBean();
+    @Autowired
+    public EntityValidationConfigurerAdapter(Validator validator) {
+        this.validator = validator;
     }
 
     @Override
     public void configureValidatingRepositoryEventListener(ValidatingRepositoryEventListener validatingListener) {
-        Validator validator = validator();
         validatingListener.addValidator("beforeCreate", validator);
         validatingListener.addValidator("beforeSave", validator);
     }

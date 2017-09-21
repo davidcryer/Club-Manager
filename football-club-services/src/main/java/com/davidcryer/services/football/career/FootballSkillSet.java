@@ -1,4 +1,4 @@
-package com.davidcryer.services.football.member;
+package com.davidcryer.services.football.career;
 
 import org.hibernate.validator.constraints.Range;
 

@@ -1,8 +1,8 @@
-package com.davidcryer.services.football.member;
+package com.davidcryer.services.football.results;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource
-public interface FootballPlayerRepository extends CrudRepository<FootballPlayer, Long> {
+public interface FootballCareerResultRepository extends CrudRepository<FootballCareerResult, Long> {
 }

@@ -1,28 +1,18 @@
-package com.davidcryer.services.baseentities;
+package com.davidcryer.services.member;
 
 import com.davidcryer.services.address.Address;
+import com.davidcryer.services.baseentities.AutoIdEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Person {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+public class Member extends AutoIdEntity {
     @NotNull
     private String firstName;
     private String lastName;
-    @OneToOne(cascade = CascadeType.REMOVE)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Address address;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getFirstName() {
         return firstName;

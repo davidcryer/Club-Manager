@@ -1,8 +1,8 @@
-package com.davidcryer.services.football.results;
+package com.davidcryer.services.football.career;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource
-public interface FootballResultsRepository extends CrudRepository<FootballResult, Long> {
+public interface FootballCareerRepository extends CrudRepository<FootballCareer, Long> {
 }

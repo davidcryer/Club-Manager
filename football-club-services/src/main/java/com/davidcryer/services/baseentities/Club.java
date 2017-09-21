@@ -5,23 +5,12 @@ import com.davidcryer.services.address.Address;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-@Entity
-public class Club {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+@MappedSuperclass
+public abstract class Club extends AutoIdEntity {
     @NotNull
     private String name;
-    @OneToOne(cascade = CascadeType.REMOVE)
+    @OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private Address address;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

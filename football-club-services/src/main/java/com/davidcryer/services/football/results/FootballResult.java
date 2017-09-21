@@ -6,36 +6,25 @@ import com.davidcryer.services.football.club.FootballClub;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
 import java.util.List;
 
 @Entity
 public class FootballResult extends GeneratedIdEntity {
     @NotNull
-    private Date date;
-    @NotNull
     @Embedded
-    private TwoTeamSport.Result result;
-    @OneToMany(mappedBy = "result", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    private TwoTeamSport.Report report;
+    @OneToMany(mappedBy = "result", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<FootballCareerResult> players;
-    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @NotNull
     private FootballClub club;
 
-    public Date getDate() {
-        return date;
+    public TwoTeamSport.Report getReport() {
+        return report;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public TwoTeamSport.Result getResult() {
-        return result;
-    }
-
-    public void setResult(TwoTeamSport.Result result) {
-        this.result = result;
+    public void setReport(TwoTeamSport.Report report) {
+        this.report = report;
     }
 
     public List<FootballCareerResult> getPlayers() {

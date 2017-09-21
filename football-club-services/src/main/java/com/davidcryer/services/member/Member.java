@@ -2,6 +2,7 @@ package com.davidcryer.services.member;
 
 import com.davidcryer.services.address.Address;
 import com.davidcryer.services.baseentities.GeneratedIdEntity;
+import com.davidcryer.services.football.career.FootballCareer;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -13,6 +14,8 @@ public class Member extends GeneratedIdEntity {
     private String lastName;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Address address;
+    @OneToOne(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private FootballCareer footballCareer;
 
     public String getFirstName() {
         return firstName;
@@ -36,5 +39,13 @@ public class Member extends GeneratedIdEntity {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public FootballCareer getFootballCareer() {
+        return footballCareer;
+    }
+
+    public void setFootballCareer(FootballCareer footballCareer) {
+        this.footballCareer = footballCareer;
     }
 }

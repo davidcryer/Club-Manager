@@ -13,6 +13,7 @@ public class FootballCareer extends IdEntity {
     @Embedded
     private FootballSkillSet skillSet;
     @MapsId
+    @OneToOne(fetch = FetchType.LAZY)
     private Member member;
     @ManyToMany(fetch = FetchType.LAZY)
     private List<FootballClub> clubs;

@@ -3,9 +3,9 @@ package com.davidcryer.services.baseentities;
 import javax.persistence.*;
 
 @MappedSuperclass
-public abstract class AutoIdEntity {
+public abstract class GeneratedIdEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     public long getId() {

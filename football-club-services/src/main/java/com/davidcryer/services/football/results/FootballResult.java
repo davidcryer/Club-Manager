@@ -1,7 +1,7 @@
 package com.davidcryer.services.football.results;
 
 import com.davidcryer.domain.common.TwoTeamSport;
-import com.davidcryer.services.baseentities.AutoIdEntity;
+import com.davidcryer.services.baseentities.GeneratedIdEntity;
 import com.davidcryer.services.football.club.FootballClub;
 
 import javax.persistence.*;
@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-public class FootballResult extends AutoIdEntity {
+public class FootballResult extends GeneratedIdEntity {
     @NotNull
     private Date date;
     @NotNull

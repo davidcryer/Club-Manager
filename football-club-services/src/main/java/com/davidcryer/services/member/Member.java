@@ -1,13 +1,13 @@
 package com.davidcryer.services.member;
 
 import com.davidcryer.services.address.Address;
-import com.davidcryer.services.baseentities.AutoIdEntity;
+import com.davidcryer.services.baseentities.GeneratedIdEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Member extends AutoIdEntity {
+public class Member extends GeneratedIdEntity {
     @NotNull
     private String firstName;
     private String lastName;

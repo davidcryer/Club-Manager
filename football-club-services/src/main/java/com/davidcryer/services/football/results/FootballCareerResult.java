@@ -1,14 +1,14 @@
 package com.davidcryer.services.football.results;
 
 import com.davidcryer.domain.common.TwoTeamSport;
-import com.davidcryer.services.baseentities.AutoIdEntity;
+import com.davidcryer.services.baseentities.GeneratedIdEntity;
 import com.davidcryer.services.football.career.FootballCareer;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class FootballCareerResult extends AutoIdEntity {
+public class FootballCareerResult extends GeneratedIdEntity {
     @NotNull
     @Enumerated(EnumType.STRING)
     private TwoTeamSport.Team team;

@@ -6,7 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @MappedSuperclass
-public abstract class Club extends AutoIdEntity {
+public abstract class Club extends GeneratedIdEntity {
     @NotNull
     private String name;
     @OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)

@@ -1,12 +1,12 @@
 package com.davidcryer.services.address;
 
-import com.davidcryer.services.baseentities.AutoIdEntity;
+import com.davidcryer.services.baseentities.GeneratedIdEntity;
 
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Address extends AutoIdEntity {
+public class Address extends GeneratedIdEntity {
     @NotNull
     private String line1;
     private String line2;

@@ -14,7 +14,7 @@ public class Member {
     @NotNull
     private String firstName;
     private String lastName;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY) @JoinColumn(name = Address.COLUMN_ID)
+    @OneToOne(cascade = CascadeType.ALL) @JoinColumn(name = Address.COLUMN_ID)
     private Address address;
     @OneToOne(mappedBy = FootballCareer.REF_MEMBER, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private FootballCareer footballCareer;

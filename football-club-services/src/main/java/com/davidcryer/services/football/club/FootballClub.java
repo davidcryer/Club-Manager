@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 public class FootballClub extends Club {
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY) @JoinColumn(name = "id")
     private List<FootballCareer> players;
     @OneToMany(mappedBy = "club", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<FootballResult> results;

@@ -14,7 +14,7 @@ public class FootballResult extends GeneratedIdEntity {
     private TwoTeamSport.Report report;
     @OneToMany(mappedBy = "result", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<FootballCareerResult> players;
-    @NotNull @ManyToOne(fetch = FetchType.LAZY)
+    @NotNull @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "id")
     private FootballClub club;
 
     public TwoTeamSport.Report getReport() {

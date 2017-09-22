@@ -12,7 +12,7 @@ public class Member extends GeneratedIdEntity {
     @NotNull
     private String firstName;
     private String lastName;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY) @JoinColumn(name = "id")
     private Address address;
     @OneToOne(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private FootballCareer footballCareer;

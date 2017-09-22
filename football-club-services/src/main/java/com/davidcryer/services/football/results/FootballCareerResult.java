@@ -11,9 +11,9 @@ import javax.validation.constraints.NotNull;
 public class FootballCareerResult extends GeneratedIdEntity {
     @NotNull @Enumerated(EnumType.STRING)
     private TwoTeamSport.Team team;
-    @NotNull @ManyToOne(fetch = FetchType.LAZY)
+    @NotNull @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "id")
     private FootballResult result;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "id")
     private FootballCareer player;
 
     public TwoTeamSport.Team getTeam() {

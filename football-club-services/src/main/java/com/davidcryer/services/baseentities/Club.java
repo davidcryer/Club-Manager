@@ -9,7 +9,8 @@ import javax.validation.constraints.NotNull;
 public abstract class Club extends GeneratedIdEntity {
     @NotNull
     private String name;
-    @OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "id")
     private Address address;
 
     public String getName() {

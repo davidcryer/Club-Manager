@@ -13,9 +13,9 @@ import java.util.List;
 public class FootballCareer extends IdEntity {
     @NotNull @Embedded
     private FootballSkillSet skillSet;
-    @NotNull @MapsId @OneToOne
+    @NotNull @MapsId @OneToOne(fetch = FetchType.LAZY)
     private Member member;
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "players", fetch = FetchType.LAZY)
     private List<FootballClub> clubs;
     @OneToMany(mappedBy = "player", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<FootballCareerResult> results;

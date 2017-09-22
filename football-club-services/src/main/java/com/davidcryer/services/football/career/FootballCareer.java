@@ -12,7 +12,7 @@ import java.util.List;
 public class FootballCareer {
     public final static String COLUMN_ID = "careerId";
     public final static String REF_MEMBER = "member";
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name = COLUMN_ID)
+    @Id @Column(name = COLUMN_ID)
     private long id;
     @NotNull @Embedded
     private FootballSkillSet skillSet;

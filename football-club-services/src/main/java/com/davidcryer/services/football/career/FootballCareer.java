@@ -1,6 +1,5 @@
 package com.davidcryer.services.football.career;
 
-import com.davidcryer.services.baseentities.IdEntity;
 import com.davidcryer.services.football.club.FootballClub;
 import com.davidcryer.services.football.results.FootballCareerResult;
 import com.davidcryer.services.member.Member;
@@ -10,15 +9,27 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
-public class FootballCareer extends IdEntity {
+public class FootballCareer {
+    public final static String COLUMN_ID = "careerId";
+    public final static String REF_MEMBER = "member";
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name = COLUMN_ID)
+    private long id;
     @NotNull @Embedded
     private FootballSkillSet skillSet;
     @NotNull @MapsId @OneToOne(fetch = FetchType.LAZY)
     private Member member;
-    @ManyToMany(mappedBy = "players", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = FootballClub.REF_FOOTBALL_CAREERS, fetch = FetchType.LAZY)
     private List<FootballClub> clubs;
-    @OneToMany(mappedBy = "player", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = FootballCareerResult.REF_FOOTBALL_CAREER, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<FootballCareerResult> results;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public FootballSkillSet getSkillSet() {
         return skillSet;

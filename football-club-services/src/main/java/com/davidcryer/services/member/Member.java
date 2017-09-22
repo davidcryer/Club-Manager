@@ -1,21 +1,31 @@
 package com.davidcryer.services.member;
 
 import com.davidcryer.services.address.Address;
-import com.davidcryer.services.baseentities.GeneratedIdEntity;
 import com.davidcryer.services.football.career.FootballCareer;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Member extends GeneratedIdEntity {
+public class Member {
+    public final static String COLUMN_ID = "memberId";
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name = COLUMN_ID)
+    private long id;
     @NotNull
     private String firstName;
     private String lastName;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY) @JoinColumn(name = "id")
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY) @JoinColumn(name = Address.COLUMN_ID)
     private Address address;
-    @OneToOne(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = FootballCareer.REF_MEMBER, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private FootballCareer footballCareer;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getFirstName() {
         return firstName;

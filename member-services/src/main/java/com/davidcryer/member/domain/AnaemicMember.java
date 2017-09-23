@@ -1,9 +1,9 @@
 package com.davidcryer.member.domain;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @MappedSuperclass
+@SuppressWarnings("unused")
 class AnaemicMember {
     private final static String COLUMN_ID = "memberId";
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name = COLUMN_ID)

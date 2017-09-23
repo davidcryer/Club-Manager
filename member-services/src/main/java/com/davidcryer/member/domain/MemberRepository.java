@@ -1,8 +1,8 @@
-package com.davidcryer.services.member;
+package com.davidcryer.member.domain;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource
-public interface MemberRepository extends CrudRepository<Member, Long> {
+interface MemberRepository extends CrudRepository<AnaemicMember, Long> {
 }

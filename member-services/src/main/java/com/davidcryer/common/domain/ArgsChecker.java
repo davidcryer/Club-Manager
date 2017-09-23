@@ -22,34 +22,30 @@ public class ArgsChecker {
         return newInstance(exceptionProvider, new ArrayList<>(fieldCount));
     }
 
-    private static <E extends InstantiationException> ArgsChecker newInstance(final ExceptionProvider exceptionProvider, final Collection<String> emptyMessages) {
+    private static ArgsChecker newInstance(final ExceptionProvider exceptionProvider, final Collection<String> emptyMessages) {
         if (!emptyMessages.isEmpty()) {emptyMessages.clear();}
         return new ArgsChecker(false, emptyMessages, exceptionProvider);
     }
 
-    public ArgsChecker check(final CheckExecutor executor, final InvalidArgMessageProvider messageProvider) {
-        if (!executor.isValid()) {
+    public ArgsChecker check(final Arg arg, final String failureMessage) {
+        if (!arg.isValid()) {
             checksFailed = true;
-            failureMessages.add(messageProvider.message());
+            failureMessages.add(failureMessage);
         }
         return this;
     }
 
-    public void throwIfChecksFailed() throws InstantiationException {
+    public void throwIfChecksFailed() throws InvalidEntityException {
         if (checksFailed) {
             throw exceptionProvider.exception(failureMessages.toArray(new String[failureMessages.size()]));
         }
     }
 
-    public interface CheckExecutor {
+    public interface Arg {
         boolean isValid();
     }
 
-    public interface InvalidArgMessageProvider {
-        String message();
-    }
-
     public interface ExceptionProvider {
-        InstantiationException exception(String[] messages);
+        InvalidEntityException exception(String[] messages);
     }
 }

@@ -2,10 +2,10 @@ package com.davidcryer.common.domain;
 
 import org.springframework.util.StringUtils;
 
-public abstract class InstantiationException extends RuntimeException {
+public abstract class InvalidEntityException extends RuntimeException {
     private final static String NEW_LINE = "\n";
 
-    public InstantiationException(String[] messages) {
+    public InvalidEntityException(String[] messages) {
         super(concatenate(messages));
     }
 
@@ -13,5 +13,5 @@ public abstract class InstantiationException extends RuntimeException {
         return StringUtils.arrayToDelimitedString(messages, NEW_LINE);
     }
 
-    public abstract String type();
+    public abstract String entityType();
 }

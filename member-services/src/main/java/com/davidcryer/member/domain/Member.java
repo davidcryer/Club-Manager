@@ -1,7 +1,7 @@
 package com.davidcryer.member.domain;
 
 import com.davidcryer.common.domain.ArgsChecker;
-import com.davidcryer.common.domain.InvalidEntityException;
+import com.davidcryer.common.domain.InvalidArgsException;
 import com.davidcryer.common.domain.StringUtils;
 
 import javax.persistence.Entity;
@@ -18,16 +18,16 @@ public class Member extends AnaemicMember {
         super(firstName, lastName, emailAddress);
     }
 
-    public static Member newInstance(String firstName, String lastName, String emailAddress) throws InvalidEntityException {
+    public static Member newInstance(String firstName, String lastName, String emailAddress) throws InvalidArgsException {
         checkArgs(firstName, emailAddress);
         return new Member(firstName, lastName, emailAddress);
     }
 
-    private static void checkArgs(String firstName, String emailAddress) throws InvalidEntityException {
-        ArgsChecker.newInstance(InvalidMemberException::new)
-                .check(() -> validFirstName(firstName), INVALID_FIELD_MESSAGE_FIRST_NAME)
-                .check(() -> validEmailAddress(emailAddress), INVALID_FIELD_MESSAGE_EMAIL_ADDRESS)
-                .throwIfChecksFailed();
+    private static void checkArgs(String firstName, String emailAddress) throws InvalidArgsException {
+        ArgsChecker.newInstance()
+                .addCheck(() -> validFirstName(firstName), INVALID_FIELD_MESSAGE_FIRST_NAME)
+                .addCheck(() -> validEmailAddress(emailAddress), INVALID_FIELD_MESSAGE_EMAIL_ADDRESS)
+                .execute();
     }
 
     static boolean validFirstName(final String firstName) {
@@ -70,21 +70,21 @@ public class Member extends AnaemicMember {
             this.emailAddress = emailAddress;
         }
 
-        public void commit() throws InvalidEntityException {
+        public void commit() throws InvalidArgsException {
             checkFields();
             write();
         }
 
-        private void checkFields() throws InvalidEntityException {
+        private void checkFields() throws InvalidArgsException {
             if (writeFirstName || writeEmailAddress) {
-                final ArgsChecker argsChecker = ArgsChecker.newInstance(InvalidMemberException::new);
+                final ArgsChecker argsChecker = ArgsChecker.newInstance();
                 if (writeFirstName) {
-                    argsChecker.check(() -> Member.validFirstName(firstName), INVALID_FIELD_MESSAGE_FIRST_NAME);
+                    argsChecker.addCheck(() -> Member.validFirstName(firstName), INVALID_FIELD_MESSAGE_FIRST_NAME);
                 }
                 if (writeEmailAddress) {
-                    argsChecker.check(() -> Member.validEmailAddress(emailAddress), INVALID_FIELD_MESSAGE_EMAIL_ADDRESS);
+                    argsChecker.addCheck(() -> Member.validEmailAddress(emailAddress), INVALID_FIELD_MESSAGE_EMAIL_ADDRESS);
                 }
-                argsChecker.throwIfChecksFailed();
+                argsChecker.run();
             }
         }
 

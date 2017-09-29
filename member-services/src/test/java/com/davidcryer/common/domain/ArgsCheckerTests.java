@@ -54,4 +54,18 @@ public class ArgsCheckerTests {
             throw ite;
         }
     }
+
+    @Test(expected = InvalidArgsException.class)
+    public void checkFailureContainsAllFailedCheckMessages() {
+        try {
+            argsChecker
+                    .addCheck(() -> false, "CheckResult 1 failed")
+                    .addCheck(() -> false, "CheckResult 2 failed")
+                    .execute();
+        } catch (InvalidArgsException ite) {
+            Assert.assertTrue(ite.getMessage().contains("CheckResult 1 failed"));
+            Assert.assertTrue(ite.getMessage().contains("CheckResult 2 failed"));
+            throw ite;
+        }
+    }
 }

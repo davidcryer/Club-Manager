@@ -1,6 +1,6 @@
 package com.davidcryer.member.domain;
 
-import com.davidcryer.common.domain.ArgsChecker;
+import com.davidcryer.common.domain.ArgsInspector;
 import com.davidcryer.common.domain.IllegalArgsException;
 import com.davidcryer.common.domain.StringUtils;
 
@@ -26,9 +26,9 @@ public class Member extends AnaemicMember {
     }
 
     private static void checkArgs(String firstName, String emailAddress) throws IllegalArgsException {
-        ArgsChecker.runChecks(
-                new ArgsChecker.Check(() -> validFirstName(firstName), INVALID_FIELD_MESSAGE_FIRST_NAME),
-                new ArgsChecker.Check(() -> validEmailAddress(emailAddress), INVALID_FIELD_MESSAGE_EMAIL_ADDRESS)
+        ArgsInspector.inspect(
+                ArgsInspector.check(() -> validFirstName(firstName), INVALID_FIELD_MESSAGE_FIRST_NAME),
+                ArgsInspector.check(() -> validEmailAddress(emailAddress), INVALID_FIELD_MESSAGE_EMAIL_ADDRESS)
         );
     }
 
@@ -82,19 +82,19 @@ public class Member extends AnaemicMember {
 
         private void checkFields() throws IllegalArgsException {
             if (firstNameChanged || emailAddressChanged) {
-                ArgsChecker.runChecks(fieldChecks());
+                ArgsInspector.inspect(fieldChecks());
             }
         }
 
-        private ArgsChecker.Check[] fieldChecks() {
-            final List<ArgsChecker.Check> checks = new ArrayList<>();
+        private ArgsInspector.CheckResult[] fieldChecks() {
+            final List<ArgsInspector.CheckResult> checkResults = new ArrayList<>();
             if (firstNameChanged) {
-                checks.add(new ArgsChecker.Check(() -> Member.validFirstName(firstName), INVALID_FIELD_MESSAGE_FIRST_NAME));
+                checkResults.add(ArgsInspector.check(() -> Member.validFirstName(firstName), INVALID_FIELD_MESSAGE_FIRST_NAME));
             }
             if (emailAddressChanged) {
-                checks.add(new ArgsChecker.Check(() -> Member.validEmailAddress(emailAddress), INVALID_FIELD_MESSAGE_EMAIL_ADDRESS));
+                checkResults.add(ArgsInspector.check(() -> Member.validEmailAddress(emailAddress), INVALID_FIELD_MESSAGE_EMAIL_ADDRESS));
             }
-            return checks.toArray(new ArgsChecker.Check[checks.size()]);
+            return checkResults.toArray(new ArgsInspector.CheckResult[checkResults.size()]);
         }
 
         private void write() {

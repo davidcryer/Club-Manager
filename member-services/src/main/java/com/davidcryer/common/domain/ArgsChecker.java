@@ -1,64 +1,52 @@
 package com.davidcryer.common.domain;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ArgsChecker {
-    private final List<CheckResult> checkResults;
 
-    private ArgsChecker(List<CheckResult> checkResults) {
-        this.checkResults = checkResults;
+    private ArgsChecker() {}
+
+    public static void runChecks(final Check... checks) throws IllegalArgsException {
+        throwExceptionIfFailedCheckExists(Arrays.asList(checks));
     }
 
-    public static ArgsChecker newInstance() {
-        return new ArgsChecker(new LinkedList<>());
-    }
-
-    public ArgsChecker addCheck(final ArgCheck argCheck, final String failureMessage) {
-        checkResults.add(new CheckResult(argCheck.passes(), failureMessage));
-        return this;
-    }
-
-    public void execute() throws IllegalArgsException {
-        throwExceptionIfFailedCheckExists();
-    }
-
-    private void throwExceptionIfFailedCheckExists() throws IllegalArgsException {
-        if (hasFailedCheck()) {
-            throwException();
+    private static void throwExceptionIfFailedCheckExists(final List<Check> checks) throws IllegalArgsException {
+        if (hasFailedCheck(checks)) {
+            throwException(messagesFromFailedChecks(checks));
         }
     }
 
-    private boolean hasFailedCheck() {
-        return !checkResults.stream().allMatch(CheckResult::passed);
+    private static boolean hasFailedCheck(final List<Check> checks) {
+        return !checks.stream().allMatch(Check::didPass);
     }
 
-    private void throwException() throws IllegalArgsException {
-        throw new IllegalArgsException(messagesFromFailedChecks());
-    }
-
-    private String[] messagesFromFailedChecks() {
-        final List<String> messages = new ArrayList<>(checkResults.size());
-        checkResults.forEach(wrapper -> {
-            if (!wrapper.passed()) {
-                messages.add(wrapper.failureMessage());
+    private static String[] messagesFromFailedChecks(final List<Check> checks) {
+        final List<String> messages = new ArrayList<>(checks.size());
+        checks.forEach(check -> {
+            if (!check.didPass()) {
+                messages.add(check.failureMessage());
             }
         });
         return messages.toArray(new String[messages.size()]);
     }
 
-    private static class CheckResult {
-        private boolean checkPassed;
+    private static void throwException(final String[] failureMessages) throws IllegalArgsException {
+        throw new IllegalArgsException(failureMessages);
+    }
+
+    public static class Check {
+        private final boolean didPass;
         private final String failureMessage;
 
-        private CheckResult(boolean checkPassed, String failureMessage) {
-            this.checkPassed = checkPassed;
+        public Check(ArgValidator argValidator, String failureMessage) {
+            this.didPass = argValidator.argIsValid();
             this.failureMessage = failureMessage;
         }
 
-        boolean passed() {
-            return checkPassed;
+        private boolean didPass() {
+            return didPass;
         }
 
         private String failureMessage() {
@@ -66,7 +54,7 @@ public class ArgsChecker {
         }
     }
 
-    public interface ArgCheck {
-        boolean passes();
+    public interface ArgValidator {
+        boolean argIsValid();
     }
 }

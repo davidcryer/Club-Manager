@@ -1,7 +1,7 @@
 package com.davidcryer.member.domain;
 
 import com.davidcryer.common.domain.ArgsChecker;
-import com.davidcryer.common.domain.InvalidArgsException;
+import com.davidcryer.common.domain.IllegalArgsException;
 import com.davidcryer.common.domain.StringUtils;
 
 import javax.persistence.Entity;
@@ -18,12 +18,12 @@ public class Member extends AnaemicMember {
         super(firstName, lastName, emailAddress);
     }
 
-    public static Member newInstance(String firstName, String lastName, String emailAddress) throws InvalidArgsException {
+    public static Member newInstance(String firstName, String lastName, String emailAddress) throws IllegalArgsException {
         checkArgs(firstName, emailAddress);
         return new Member(firstName, lastName, emailAddress);
     }
 
-    private static void checkArgs(String firstName, String emailAddress) throws InvalidArgsException {
+    private static void checkArgs(String firstName, String emailAddress) throws IllegalArgsException {
         ArgsChecker.newInstance()
                 .addCheck(() -> validFirstName(firstName), INVALID_FIELD_MESSAGE_FIRST_NAME)
                 .addCheck(() -> validEmailAddress(emailAddress), INVALID_FIELD_MESSAGE_EMAIL_ADDRESS)
@@ -73,12 +73,12 @@ public class Member extends AnaemicMember {
             return this;
         }
 
-        public void commit() throws InvalidArgsException {
+        public void commit() throws IllegalArgsException {
             checkFields();
             write();
         }
 
-        private void checkFields() throws InvalidArgsException {
+        private void checkFields() throws IllegalArgsException {
             if (firstNameChanged || emailAddressChanged) {
                 final ArgsChecker argsChecker = ArgsChecker.newInstance();
                 if (firstNameChanged) {

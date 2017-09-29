@@ -20,11 +20,11 @@ public class ArgsChecker {
         return this;
     }
 
-    public void execute() throws InvalidArgsException {
+    public void execute() throws IllegalArgsException {
         throwExceptionIfFailedCheckExists();
     }
 
-    private void throwExceptionIfFailedCheckExists() throws InvalidArgsException {
+    private void throwExceptionIfFailedCheckExists() throws IllegalArgsException {
         if (hasFailedCheck()) {
             throwException();
         }
@@ -34,8 +34,8 @@ public class ArgsChecker {
         return !checkResults.stream().allMatch(CheckResult::passed);
     }
 
-    private void throwException() throws InvalidArgsException {
-        throw new InvalidArgsException(messagesFromFailedChecks());
+    private void throwException() throws IllegalArgsException {
+        throw new IllegalArgsException(messagesFromFailedChecks());
     }
 
     private String[] messagesFromFailedChecks() {

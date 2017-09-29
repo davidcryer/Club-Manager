@@ -3,11 +3,11 @@ package com.davidcryer.common.domain;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class InvalidArgsExceptionTests {
+public class IllegalArgsExceptionTests {
 
     @Test
     public void messageFormat() {
-        final InvalidArgsException iae = new InvalidArgsException(new String[] {"Message 1", "Message 2"});
+        final IllegalArgsException iae = new IllegalArgsException(new String[] {"Message 1", "Message 2"});
         Assert.assertEquals(iae.getMessage(), "Message 1\nMessage 2");
     }
 }

@@ -1,6 +1,6 @@
 package com.davidcryer.member.domain;
 
-import com.davidcryer.common.domain.InvalidArgsException;
+import com.davidcryer.common.domain.IllegalArgsException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,22 +15,22 @@ public class MemberTests {
         Assert.assertEquals(member.getEmailAddress(), "outlaw@country.com");
     }
 
-    @Test(expected = InvalidArgsException.class)
+    @Test(expected = IllegalArgsException.class)
     public void newInstanceWithNullFirstName() {
         Member.newInstance(null, null, "outlaw@country.com");
     }
 
-    @Test(expected = InvalidArgsException.class)
+    @Test(expected = IllegalArgsException.class)
     public void newInstanceWithEmptyFirstName() {
         Member.newInstance("", null, "outlaw@country.com");
     }
 
-    @Test(expected = InvalidArgsException.class)
+    @Test(expected = IllegalArgsException.class)
     public void newInstanceWithNullEmailAddress() {
         Member.newInstance("Cherline", null, null);
     }
 
-    @Test(expected = InvalidArgsException.class)
+    @Test(expected = IllegalArgsException.class)
     public void newInstanceWithEmptyEmailAddress() {
         Member.newInstance("Cherline", null, "");
     }
@@ -49,7 +49,7 @@ public class MemberTests {
             Assert.assertEquals(member.getFirstName(), "Cheryl");
         }
 
-        @Test(expected = InvalidArgsException.class)
+        @Test(expected = IllegalArgsException.class)
         public void illegalFirstName() {
             member.writer().firstName("").commit();
         }

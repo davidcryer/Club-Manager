@@ -2,10 +2,10 @@ package com.davidcryer.common.domain;
 
 import org.springframework.util.StringUtils;
 
-public class InvalidArgsException extends RuntimeException {
+public class IllegalArgsException extends RuntimeException {
     private final static String NEW_LINE = "\n";
 
-    InvalidArgsException(String[] messages) {
+    IllegalArgsException(String[] messages) {
         super(concatenate(messages));
     }
 

@@ -7,11 +7,20 @@ import java.util.List;
 public class ArgsChecker {
     private final List<CheckResult> checkResults;
 
-    ArgsChecker(List<CheckResult> checkResults) {
+    private ArgsChecker(List<CheckResult> checkResults) {
         this.checkResults = checkResults;
     }
 
-    public void run() throws InvalidArgsException {
+    public static ArgsChecker newInstance() {
+        return new ArgsChecker(new LinkedList<>());
+    }
+
+    public ArgsChecker addCheck(final ArgCheck argCheck, final String failureMessage) {
+        checkResults.add(new CheckResult(argCheck.passes(), failureMessage));
+        return this;
+    }
+
+    public void execute() throws InvalidArgsException {
         throwExceptionIfFailedCheckExists();
     }
 
@@ -54,23 +63,6 @@ public class ArgsChecker {
 
         private String failureMessage() {
             return failureMessage;
-        }
-    }
-
-    public static class Builder {
-        private final List<CheckResult> checkResults;
-
-        public Builder() {
-            checkResults = new LinkedList<>();
-        }
-
-        public Builder addCheck(final ArgCheck argCheck, final String failureMessage) {
-            checkResults.add(new CheckResult(argCheck.passes(), failureMessage));
-            return this;
-        }
-
-        public ArgsChecker build() {
-            return new ArgsChecker(checkResults);
         }
     }
 

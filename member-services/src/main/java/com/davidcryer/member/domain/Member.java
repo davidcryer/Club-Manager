@@ -84,7 +84,7 @@ public class Member extends AnaemicMember {
                 if (writeEmailAddress) {
                     argsChecker.addCheck(() -> Member.validEmailAddress(emailAddress), INVALID_FIELD_MESSAGE_EMAIL_ADDRESS);
                 }
-                argsChecker.run();
+                argsChecker.execute();
             }
         }
 

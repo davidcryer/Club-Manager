@@ -16,22 +16,22 @@ public class MemberTests {
     }
 
     @Test(expected = IllegalArgsException.class)
-    public void newInstanceWithNullFirstName() {
+    public void newInstanceFailureDueToNullFirstName() {
         Member.newInstance(null, null, "outlaw@country.com");
     }
 
     @Test(expected = IllegalArgsException.class)
-    public void newInstanceWithEmptyFirstName() {
+    public void newInstanceFailureDueToEmptyFirstName() {
         Member.newInstance("", null, "outlaw@country.com");
     }
 
     @Test(expected = IllegalArgsException.class)
-    public void newInstanceWithNullEmailAddress() {
+    public void newInstanceFailureDueToWithNullEmailAddress() {
         Member.newInstance("Cherline", null, null);
     }
 
     @Test(expected = IllegalArgsException.class)
-    public void newInstanceWithEmptyEmailAddress() {
+    public void newInstanceFailureDueToWithEmptyEmailAddress() {
         Member.newInstance("Cherline", null, "");
     }
 

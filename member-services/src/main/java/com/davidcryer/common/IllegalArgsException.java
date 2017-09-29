@@ -1,7 +1,10 @@
-package com.davidcryer.common.domain;
+package com.davidcryer.common;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
+@ResponseStatus(value = HttpStatus.BAD_REQUEST)
 public class IllegalArgsException extends RuntimeException {
     private final static String NEW_LINE = "\n";
 

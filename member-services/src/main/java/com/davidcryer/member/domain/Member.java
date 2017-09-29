@@ -1,8 +1,9 @@
 package com.davidcryer.member.domain;
 
-import com.davidcryer.common.domain.ArgsInspector;
-import com.davidcryer.common.domain.IllegalArgsException;
-import com.davidcryer.common.domain.StringUtils;
+import com.davidcryer.common.ArgsInspector;
+import com.davidcryer.common.IllegalArgsException;
+import com.davidcryer.common.ObjectUtils;
+import com.davidcryer.common.StringUtils;
 
 import javax.persistence.Entity;
 import java.util.ArrayList;
@@ -58,19 +59,19 @@ public class Member extends AnaemicMember {
         }
 
         public Writer firstName(final String firstName) {
-            firstNameChanged = !StringUtils.equal(firstName, member.getFirstName());
+            firstNameChanged = !ObjectUtils.equal(firstName, member.getFirstName());
             this.firstName = firstName;
             return this;
         }
 
         public Writer lastName(final String lastName) {
-            lastNameChanged = !StringUtils.equal(lastName, member.getLastName());
+            lastNameChanged = !ObjectUtils.equal(lastName, member.getLastName());
             this.lastName = lastName;
             return this;
         }
 
         public Writer emailAddress(final String emailAddress) {
-            emailAddressChanged = !StringUtils.equal(emailAddress, member.getEmailAddress());
+            emailAddressChanged = !ObjectUtils.equal(emailAddress, member.getEmailAddress());
             this.emailAddress = emailAddress;
             return this;
         }

@@ -1,4 +1,4 @@
-package com.davidcryer.common.domain;
+package com.davidcryer.common;
 
 import org.junit.Assert;
 import org.junit.Test;

@@ -1,6 +1,6 @@
 package com.davidcryer.member.domain;
 
-import com.davidcryer.common.domain.IllegalArgsException;
+import com.davidcryer.common.IllegalArgsException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

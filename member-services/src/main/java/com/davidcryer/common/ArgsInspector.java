@@ -1,4 +1,4 @@
-package com.davidcryer.common.domain;
+package com.davidcryer.common;
 
 import java.util.ArrayList;
 import java.util.Arrays;

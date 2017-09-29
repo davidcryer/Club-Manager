@@ -1,4 +1,4 @@
-package com.davidcryer.common.domain;
+package com.davidcryer.common;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -18,20 +18,5 @@ public class StringUtilsTests {
     @Test
     public void stringNotEmpty() {
         Assert.assertTrue(StringUtils.notNullOrEmpty("String"));
-    }
-
-    @Test
-    public void equalStringsBothNull() {
-        Assert.assertTrue(StringUtils.equal(null, null));
-    }
-
-    @Test
-    public void equalStringsNonNull() {
-        Assert.assertTrue(StringUtils.equal("", ""));
-    }
-
-    @Test
-    public void unequalStringsOneNull() {
-        Assert.assertFalse(StringUtils.equal(null, ""));
     }
 }

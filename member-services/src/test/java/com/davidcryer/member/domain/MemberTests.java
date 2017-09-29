@@ -77,8 +77,8 @@ public class MemberTests {
                 member.writer().firstName("").emailAddress("").commit();
                 assert false;
             } catch (IllegalArgsException iae) {
-                Assert.assertTrue(iae.getMessage().contains(Member.INVALID_FIELD_MESSAGE_FIRST_NAME));
-                Assert.assertTrue(iae.getMessage().contains(Member.INVALID_FIELD_MESSAGE_EMAIL_ADDRESS));
+                Assert.assertTrue(iae.getMessage().contains(Member.ILLEGAL_FIELD_MESSAGE_FIRST_NAME));
+                Assert.assertTrue(iae.getMessage().contains(Member.ILLEGAL_FIELD_MESSAGE_EMAIL_ADDRESS));
             }
         }
     }

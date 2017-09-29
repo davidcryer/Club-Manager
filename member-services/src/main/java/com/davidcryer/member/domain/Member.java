@@ -10,8 +10,8 @@ import java.util.List;
 
 @Entity
 public class Member extends AnaemicMember {
-    final static String INVALID_FIELD_MESSAGE_FIRST_NAME = "firstName cannot be null or empty";
-    final static String INVALID_FIELD_MESSAGE_EMAIL_ADDRESS = "emailAddress cannot be null or empty";
+    final static String ILLEGAL_FIELD_MESSAGE_FIRST_NAME = "firstName cannot be null or empty";
+    final static String ILLEGAL_FIELD_MESSAGE_EMAIL_ADDRESS = "emailAddress cannot be null or empty";
 
     @SuppressWarnings("unused")
     Member() {}
@@ -27,8 +27,8 @@ public class Member extends AnaemicMember {
 
     private static void checkArgs(String firstName, String emailAddress) throws IllegalArgsException {
         ArgsInspector.inspect(
-                ArgsInspector.check(() -> validFirstName(firstName), INVALID_FIELD_MESSAGE_FIRST_NAME),
-                ArgsInspector.check(() -> validEmailAddress(emailAddress), INVALID_FIELD_MESSAGE_EMAIL_ADDRESS)
+                ArgsInspector.check(() -> validFirstName(firstName), ILLEGAL_FIELD_MESSAGE_FIRST_NAME),
+                ArgsInspector.check(() -> validEmailAddress(emailAddress), ILLEGAL_FIELD_MESSAGE_EMAIL_ADDRESS)
         );
     }
 
@@ -89,10 +89,10 @@ public class Member extends AnaemicMember {
         private ArgsInspector.CheckResult[] fieldChecks() {
             final List<ArgsInspector.CheckResult> checkResults = new ArrayList<>();
             if (firstNameChanged) {
-                checkResults.add(ArgsInspector.check(() -> Member.validFirstName(firstName), INVALID_FIELD_MESSAGE_FIRST_NAME));
+                checkResults.add(ArgsInspector.check(() -> Member.validFirstName(firstName), ILLEGAL_FIELD_MESSAGE_FIRST_NAME));
             }
             if (emailAddressChanged) {
-                checkResults.add(ArgsInspector.check(() -> Member.validEmailAddress(emailAddress), INVALID_FIELD_MESSAGE_EMAIL_ADDRESS));
+                checkResults.add(ArgsInspector.check(() -> Member.validEmailAddress(emailAddress), ILLEGAL_FIELD_MESSAGE_EMAIL_ADDRESS));
             }
             return checkResults.toArray(new ArgsInspector.CheckResult[checkResults.size()]);
         }

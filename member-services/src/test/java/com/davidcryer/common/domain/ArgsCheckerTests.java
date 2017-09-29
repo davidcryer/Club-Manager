@@ -21,9 +21,9 @@ public class ArgsCheckerTests {
     public void checkFailure() {
         try {
             argsChecker.addCheck(() -> false, "Failure message").execute();
-        } catch (InvalidArgsException ite) {
-            Assert.assertTrue(ite.getMessage().contains("Failure message"));
-            throw ite;
+        } catch (InvalidArgsException iae) {
+            Assert.assertTrue(iae.getMessage().contains("Failure message"));
+            throw iae;
         }
     }
 
@@ -34,10 +34,10 @@ public class ArgsCheckerTests {
                     .addCheck(() -> true, "CheckResult 1 failed")
                     .addCheck(() -> false, "CheckResult 2 failed")
                     .execute();
-        } catch (InvalidArgsException ite) {
-            Assert.assertFalse(ite.getMessage().contains("CheckResult 1 failed"));
-            Assert.assertTrue(ite.getMessage().contains("CheckResult 2 failed"));
-            throw ite;
+        } catch (InvalidArgsException iae) {
+            Assert.assertFalse(iae.getMessage().contains("CheckResult 1 failed"));
+            Assert.assertTrue(iae.getMessage().contains("CheckResult 2 failed"));
+            throw iae;
         }
     }
 
@@ -48,10 +48,10 @@ public class ArgsCheckerTests {
                     .addCheck(() -> false, "CheckResult 1 failed")
                     .addCheck(() -> true, "CheckResult 2 failed")
                     .execute();
-        } catch (InvalidArgsException ite) {
-            Assert.assertTrue(ite.getMessage().contains("CheckResult 1 failed"));
-            Assert.assertFalse(ite.getMessage().contains("CheckResult 2 failed"));
-            throw ite;
+        } catch (InvalidArgsException iae) {
+            Assert.assertTrue(iae.getMessage().contains("CheckResult 1 failed"));
+            Assert.assertFalse(iae.getMessage().contains("CheckResult 2 failed"));
+            throw iae;
         }
     }
 
@@ -62,10 +62,10 @@ public class ArgsCheckerTests {
                     .addCheck(() -> false, "CheckResult 1 failed")
                     .addCheck(() -> false, "CheckResult 2 failed")
                     .execute();
-        } catch (InvalidArgsException ite) {
-            Assert.assertTrue(ite.getMessage().contains("CheckResult 1 failed"));
-            Assert.assertTrue(ite.getMessage().contains("CheckResult 2 failed"));
-            throw ite;
+        } catch (InvalidArgsException iae) {
+            Assert.assertTrue(iae.getMessage().contains("CheckResult 1 failed"));
+            Assert.assertTrue(iae.getMessage().contains("CheckResult 2 failed"));
+            throw iae;
         }
     }
 }

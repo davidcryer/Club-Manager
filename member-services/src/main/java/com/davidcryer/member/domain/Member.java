@@ -45,28 +45,28 @@ public class Member extends AnaemicMember {
     public static class Writer {
         private final AnaemicMember member;
         private String firstName = null;
-        private boolean writeFirstName = false;
+        private boolean firstNameChanged = false;
         private String lastName = null;
-        private boolean writeLastName = false;
+        private boolean lastNameChanged = false;
         private String emailAddress = null;
-        private boolean writeEmailAddress = false;
+        private boolean emailAddressChanged = false;
 
         private Writer(AnaemicMember member) {
             this.member = member;
         }
 
         public void firstName(final String firstName) {
-            writeFirstName = StringUtils.equal(firstName, member.getFirstName());
+            firstNameChanged = !StringUtils.equal(firstName, member.getFirstName());
             this.firstName = firstName;
         }
 
         public void lastName(final String lastName) {
-            writeLastName = StringUtils.equal(lastName, member.getLastName());
+            lastNameChanged = !StringUtils.equal(lastName, member.getLastName());
             this.lastName = lastName;
         }
 
         public void emailAddress(final String emailAddress) {
-            writeEmailAddress = StringUtils.equal(emailAddress, member.getEmailAddress());
+            emailAddressChanged = !StringUtils.equal(emailAddress, member.getEmailAddress());
             this.emailAddress = emailAddress;
         }
 
@@ -76,12 +76,12 @@ public class Member extends AnaemicMember {
         }
 
         private void checkFields() throws InvalidArgsException {
-            if (writeFirstName || writeEmailAddress) {
+            if (firstNameChanged || emailAddressChanged) {
                 final ArgsChecker argsChecker = ArgsChecker.newInstance();
-                if (writeFirstName) {
+                if (firstNameChanged) {
                     argsChecker.addCheck(() -> Member.validFirstName(firstName), INVALID_FIELD_MESSAGE_FIRST_NAME);
                 }
-                if (writeEmailAddress) {
+                if (emailAddressChanged) {
                     argsChecker.addCheck(() -> Member.validEmailAddress(emailAddress), INVALID_FIELD_MESSAGE_EMAIL_ADDRESS);
                 }
                 argsChecker.execute();
@@ -89,13 +89,13 @@ public class Member extends AnaemicMember {
         }
 
         private void write() {
-            if (writeFirstName) {
+            if (firstNameChanged) {
                 member.setFirstName(firstName);
             }
-            if (writeLastName) {
+            if (lastNameChanged) {
                 member.setLastName(lastName);
             }
-            if (writeEmailAddress) {
+            if (emailAddressChanged) {
                 member.setEmailAddress(emailAddress);
             }
         }

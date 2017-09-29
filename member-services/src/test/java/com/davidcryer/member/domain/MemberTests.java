@@ -2,6 +2,7 @@ package com.davidcryer.member.domain;
 
 import com.davidcryer.common.domain.InvalidArgsException;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class MemberTests {
@@ -32,5 +33,25 @@ public class MemberTests {
     @Test(expected = InvalidArgsException.class)
     public void newInstanceWithEmptyEmailAddress() {
         Member.newInstance("Cherline", null, "");
+    }
+
+    public static class WriterTests {
+        private Member member;
+
+        @Before
+        public void setup() {
+            member = Member.newInstance("Cherline", null, "outlaw@country.com");
+        }
+
+        @Test
+        public void changeFirstName() {
+            member.writer().firstName("Cheryl").commit();
+            Assert.assertEquals(member.getFirstName(), "Cheryl");
+        }
+
+        @Test(expected = InvalidArgsException.class)
+        public void illegalFirstName() {
+            member.writer().firstName("").commit();
+        }
     }
 }

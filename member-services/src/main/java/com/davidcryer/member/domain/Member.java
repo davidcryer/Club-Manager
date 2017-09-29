@@ -55,19 +55,22 @@ public class Member extends AnaemicMember {
             this.member = member;
         }
 
-        public void firstName(final String firstName) {
+        public Writer firstName(final String firstName) {
             firstNameChanged = !StringUtils.equal(firstName, member.getFirstName());
             this.firstName = firstName;
+            return this;
         }
 
-        public void lastName(final String lastName) {
+        public Writer lastName(final String lastName) {
             lastNameChanged = !StringUtils.equal(lastName, member.getLastName());
             this.lastName = lastName;
+            return this;
         }
 
-        public void emailAddress(final String emailAddress) {
+        public Writer emailAddress(final String emailAddress) {
             emailAddressChanged = !StringUtils.equal(emailAddress, member.getEmailAddress());
             this.emailAddress = emailAddress;
+            return this;
         }
 
         public void commit() throws InvalidArgsException {

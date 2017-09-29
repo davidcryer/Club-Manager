@@ -13,12 +13,12 @@ public class ArgsInspector {
     }
 
     private static void throwExceptionIfFailedCheckExists(final List<CheckResult> checkResults) throws IllegalArgsException {
-        if (hasFailedCheck(checkResults)) {
+        if (containsFailedCheck(checkResults)) {
             throwException(messagesFromFailedChecks(checkResults));
         }
     }
 
-    private static boolean hasFailedCheck(final List<CheckResult> checkResults) {
+    private static boolean containsFailedCheck(final List<CheckResult> checkResults) {
         return !checkResults.stream().allMatch(CheckResult::didPass);
     }
 

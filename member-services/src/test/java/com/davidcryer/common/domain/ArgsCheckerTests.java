@@ -13,12 +13,12 @@ public class ArgsCheckerTests {
     }
 
     @Test
-    public void checkSuccess() {
+    public void success() {
         argsChecker.addCheck(() -> true, "").execute();
     }
 
     @Test(expected = InvalidArgsException.class)
-    public void checkFailure() {
+    public void failure() {
         try {
             argsChecker.addCheck(() -> false, "Failure message").execute();
         } catch (InvalidArgsException iae) {
@@ -28,7 +28,7 @@ public class ArgsCheckerTests {
     }
 
     @Test(expected = InvalidArgsException.class)
-    public void checkFailureGivenSuccessfulCheckThenFailedCheck() {
+    public void failureGivenSuccessfulCheckThenFailedCheck() {
         try {
             argsChecker
                     .addCheck(() -> true, "CheckResult 1 failed")
@@ -42,7 +42,7 @@ public class ArgsCheckerTests {
     }
 
     @Test(expected = InvalidArgsException.class)
-    public void checkFailureGivenFailedCheckThenSuccessfulCheck() {
+    public void failureGivenFailedCheckThenSuccessfulCheck() {
         try {
             argsChecker
                     .addCheck(() -> false, "CheckResult 1 failed")
@@ -56,7 +56,7 @@ public class ArgsCheckerTests {
     }
 
     @Test(expected = InvalidArgsException.class)
-    public void checkFailureContainsAllFailedCheckMessages() {
+    public void failureExceptionContainsAllFailedCheckMessages() {
         try {
             argsChecker
                     .addCheck(() -> false, "CheckResult 1 failed")

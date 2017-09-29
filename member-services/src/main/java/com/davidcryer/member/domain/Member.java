@@ -8,8 +8,8 @@ import javax.persistence.Entity;
 
 @Entity
 public class Member extends AnaemicMember {
-    private final static String INVALID_FIELD_MESSAGE_FIRST_NAME = "firstName cannot be null or empty";
-    private final static String INVALID_FIELD_MESSAGE_EMAIL_ADDRESS = "emailAddress cannot be null or empty";
+    final static String INVALID_FIELD_MESSAGE_FIRST_NAME = "firstName cannot be null or empty";
+    final static String INVALID_FIELD_MESSAGE_EMAIL_ADDRESS = "emailAddress cannot be null or empty";
 
     @SuppressWarnings("unused")
     Member() {}

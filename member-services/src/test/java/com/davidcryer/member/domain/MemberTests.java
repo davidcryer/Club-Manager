@@ -53,5 +53,33 @@ public class MemberTests {
         public void illegalFirstName() {
             member.writer().firstName("").commit();
         }
+
+        @Test
+        public void changeLastName() {
+            member.writer().lastName("Tunt").commit();
+            Assert.assertEquals(member.getLastName(), "Tunt");
+        }
+
+        @Test
+        public void changeEmailAddress() {
+            member.writer().emailAddress("tunt@fortunes.com").commit();
+            Assert.assertEquals(member.getEmailAddress(), "tunt@fortunes.com");
+        }
+
+        @Test(expected = IllegalArgsException.class)
+        public void illegalEmailAddress() {
+            member.writer().emailAddress("").commit();
+        }
+
+        @Test
+        public void illegalArgsExceptionContainsAllFailureMessages() {
+            try {
+                member.writer().firstName("").emailAddress("").commit();
+                assert false;
+            } catch (IllegalArgsException iae) {
+                Assert.assertTrue(iae.getMessage().contains(Member.INVALID_FIELD_MESSAGE_FIRST_NAME));
+                Assert.assertTrue(iae.getMessage().contains(Member.INVALID_FIELD_MESSAGE_EMAIL_ADDRESS));
+            }
+        }
     }
 }

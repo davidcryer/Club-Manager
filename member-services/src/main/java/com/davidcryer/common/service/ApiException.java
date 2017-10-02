@@ -8,6 +8,10 @@ public class ApiException extends RuntimeException {
 
     public ApiException() {}
 
+    public ApiException(String message) {
+        super(message);
+    }
+
     public ApiException(Throwable cause) {
         super(cause);
     }
@@ -25,6 +29,8 @@ public class ApiException extends RuntimeException {
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
     public static class NotFound extends ApiException {
 
-        public NotFound() {}
+        public NotFound(final String message) {
+            super(message);
+        }
     }
 }

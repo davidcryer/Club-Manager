@@ -15,13 +15,17 @@ class MemberService {
         this.repository = repository;
     }
 
-    void create(final ApiMember apiMember) throws IllegalArgsException {
-        repository.save(Member.newInstance(apiMember.getFirstName(), apiMember.getLastName(), apiMember.getEmailAddress()));
+    Member create(final ApiMember apiMember) throws IllegalArgsException {
+        return repository.save(Member.newInstance(apiMember.getFirstName(), apiMember.getLastName(), apiMember.getEmailAddress()));
     }
 
-    void update(final Member member, final ApiMember apiMember) throws IllegalArgsException {
+    Member update(final Member member, final ApiMember apiMember) throws IllegalArgsException {
         member.writer().firstName(apiMember.getFirstName()).lastName(apiMember.getLastName()).emailAddress(apiMember.getEmailAddress()).commit();
-        repository.save(member);
+        return repository.save(member);
+    }
+
+    void delete(final long id) {
+        repository.delete(id);
     }
 
     Member find(final long id) {

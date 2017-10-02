@@ -19,9 +19,9 @@ public class MemberController {
 
     @RequestMapping(value = "/members", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.CREATED)
-    public ApiMember.Response post(@RequestBody final ApiMember apiMember) {
+    public ApiMember.Response post(@RequestBody final ApiMember.Request member) {
         try {
-            return memberService.create(apiMember);
+            return memberService.create(member);
         } catch (IllegalArgsException iae) {
             throw new ApiException.BadRequest(iae);
         }
@@ -29,9 +29,9 @@ public class MemberController {
 
     @RequestMapping(value = "/members/{id}", method = RequestMethod.PUT)
     @ResponseStatus(value = HttpStatus.ACCEPTED)
-    public ApiMember.Response put(@PathVariable(name = "id") final Long id, @RequestBody final ApiMember apiMember) {
+    public ApiMember.Response put(@PathVariable(name = "id") final Long id, @RequestBody final ApiMember.Request member) {
         try {
-            return memberService.update(find(id), apiMember);
+            return memberService.update(find(id), member);
         } catch (IllegalArgsException iae) {
             throw new ApiException.BadRequest(iae);
         }

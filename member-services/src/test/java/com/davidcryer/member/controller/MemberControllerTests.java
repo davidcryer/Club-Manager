@@ -30,7 +30,7 @@ public class MemberControllerTests {
 
     @Test
     public void createMember() throws Exception {
-        final ApiMember request = new ApiMember.Request("Cherline", null, "outlaw@country.com");
+        final ApiMember.Request request = new ApiMember.Request("Cherline", null, "outlaw@country.com");
         mvc.perform(post("/members")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(request)))
@@ -39,14 +39,14 @@ public class MemberControllerTests {
 
     @Test
     public void createMemberWithInvalidData() throws Exception {
-        final ApiMember apiMember = new ApiMember.Request(null, null, "outlaw@country.com");
-        when(memberService.create(apiMember)).then((Answer<Member>) invocation -> {
+        final ApiMember.Request request = new ApiMember.Request(null, null, "outlaw@country.com");
+        when(memberService.create(request)).then((Answer<Member>) invocation -> {
             ArgsInspector.inspect(ArgsInspector.check(() -> false, ""));
             return null;
         });
         mvc.perform(post("/members")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(apiMember)))
+                .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isBadRequest());
     }
 
@@ -54,20 +54,20 @@ public class MemberControllerTests {
     public void putMember() throws Exception {
         final Member stored = Member.newInstance("Cherline", null, "outlaw@country.com");
         when(memberService.find(1L)).thenReturn(stored);
-        final ApiMember apiMember = new ApiMember.Request("Cheryl", "Tunt", "outlaw@country.com");
+        final ApiMember.Request request = new ApiMember.Request("Cheryl", "Tunt", "outlaw@country.com");
         mvc.perform(put("/members/{id}", 1L)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(apiMember)))
+                .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isAccepted());
     }
 
     @Test
     public void putMemberWithNonExistentId() throws Exception {
         when(memberService.find(1L)).thenReturn(null);
-        final ApiMember apiMember = new ApiMember.Request("Cheryl", "Tunt", "outlaw@country.com");
+        final ApiMember request = new ApiMember.Request("Cheryl", "Tunt", "outlaw@country.com");
         mvc.perform(put("/members/{id}", 1L)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(apiMember)))
+                .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isNotFound());
     }
 }

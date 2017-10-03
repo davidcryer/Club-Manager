@@ -33,19 +33,19 @@ public class Member extends AnaemicMember {
         );
     }
 
-    static boolean validFirstName(final String firstName) {
+    private static boolean validFirstName(final String firstName) {
         return StringUtils.notNullOrEmpty(firstName);
     }
 
-    static boolean validEmailAddress(final String emailAddress) {
+    private static boolean validEmailAddress(final String emailAddress) {
         return StringUtils.notNullOrEmpty(emailAddress);
     }
 
-    public Writer writer() {
+    Writer writer() {
         return new Writer(this);
     }
 
-    public static class Writer {
+    static class Writer {
         private final AnaemicMember member;
         private String firstName = null;
         private boolean firstNameChanged = false;
@@ -58,25 +58,25 @@ public class Member extends AnaemicMember {
             this.member = member;
         }
 
-        public Writer firstName(final String firstName) {
+        Writer firstName(final String firstName) {
             firstNameChanged = !ObjectUtils.equal(firstName, member.getFirstName());
             this.firstName = firstName;
             return this;
         }
 
-        public Writer lastName(final String lastName) {
+        Writer lastName(final String lastName) {
             lastNameChanged = !ObjectUtils.equal(lastName, member.getLastName());
             this.lastName = lastName;
             return this;
         }
 
-        public Writer emailAddress(final String emailAddress) {
+        Writer emailAddress(final String emailAddress) {
             emailAddressChanged = !ObjectUtils.equal(emailAddress, member.getEmailAddress());
             this.emailAddress = emailAddress;
             return this;
         }
 
-        public void commit() throws IllegalArgsException {
+        void commit() throws IllegalArgsException {
             checkFields();
             write();
         }

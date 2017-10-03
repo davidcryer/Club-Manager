@@ -1,6 +1,7 @@
 package com.davidcryer.member.domain;
 
 import com.davidcryer.common.IllegalArgsException;
+import com.davidcryer.common.service.ApiException;
 import com.davidcryer.member.controller.ApiMember;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,24 +15,24 @@ public class MemberService {
         this.repository = repository;
     }
 
-    public ApiMember.Response create(final ApiMember apiMember) throws IllegalArgsException {
-        return apiMemberResponse(repository.save(Member.newInstance(apiMember.getFirstName(), apiMember.getLastName(), apiMember.getEmailAddress())));
+    public Member create(final ApiMember apiMember) throws IllegalArgsException {
+        return repository.save(Member.newInstance(apiMember.getFirstName(), apiMember.getLastName(), apiMember.getEmailAddress()));
     }
 
-    public ApiMember.Response update(final Member member, final ApiMember apiMember) throws IllegalArgsException {
+    public Iterable<Member> readAll() {
+        return repository.findAll();
+    }
+
+    public Member update(final Member member, final ApiMember apiMember) throws IllegalArgsException {
         member.writer().firstName(apiMember.getFirstName()).lastName(apiMember.getLastName()).emailAddress(apiMember.getEmailAddress()).commit();
-        return apiMemberResponse(repository.save(member));
+        return repository.save(member);
     }
 
-    private static ApiMember.Response apiMemberResponse(final Member member) {
-        return new ApiMember.Response(member.getId(), member.getFirstName(), member.getLastName(), member.getEmailAddress());
+    public void delete(final Long id) throws ApiException.NotFound {
+        repository.delete(find(id));
     }
 
-    public void delete(final Long id) {
-        repository.delete(id);
-    }
-
-    public Member find(final Long id) {
+    public Member find(final long id) throws ApiException.NotFound {
         return repository.findOne(id);
     }
 }

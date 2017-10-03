@@ -29,6 +29,13 @@ public class MemberControllerTests {
     private MemberService memberService;
 
     @Test
+    public void getMember() throws Exception {
+        mvc.perform(get("/members/{id}", 1L))
+                .andExpect(status().isAccepted())
+                .andExpect(content().json(new ApiMember.Response(1L, )));
+    }
+
+    @Test
     public void createMember() throws Exception {
         final ApiMember.Request request = new ApiMember.Request("Cherline", null, "outlaw@country.com");
         mvc.perform(post("/members")

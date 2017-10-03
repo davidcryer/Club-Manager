@@ -20,7 +20,7 @@ class AnaemicMember {
         this.emailAddress = emailAddress;
     }
 
-    long getId() {
+    public long getId() {
         return id;
     }
 
@@ -28,7 +28,7 @@ class AnaemicMember {
         this.id = id;
     }
 
-    String getFirstName() {
+    public String getFirstName() {
         return firstName;
     }
 
@@ -36,7 +36,7 @@ class AnaemicMember {
         this.firstName = firstName;
     }
 
-    String getLastName() {
+    public String getLastName() {
         return lastName;
     }
 
@@ -44,7 +44,7 @@ class AnaemicMember {
         this.lastName = lastName;
     }
 
-    String getEmailAddress() {
+    public String getEmailAddress() {
         return emailAddress;
     }
 
